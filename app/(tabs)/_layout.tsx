@@ -1,20 +1,19 @@
-import React from "react";
-import { Tabs } from "expo-router";
-import { Image, ImageBackground, Text, View } from "react-native";
-import { images } from "@/constants/images";
 import { icons } from "@/constants/icons";
+import { images } from "@/constants/images";
+import { Tabs } from "expo-router";
+import React from "react";
+import { Image, ImageBackground, View } from "react-native";
 
 interface TabIconProps {
     focused: boolean;
     icon: any;
-    title: string;
 }
 
-const TabIcon = ({ focused, icon, title }: TabIconProps) => {
+const TabIcon = ({ focused, icon }: TabIconProps) => {
     if (!focused) {
         return (
             <View className="size-full items-center justify-center mt-4 rounded-full">
-                <Image source={icon} tintColor="#a8b5db" className="size-5" />
+                <Image source={icon} tintColor="#fff" className="size-7" resizeMode="contain" />
             </View>
         );
     }
@@ -22,10 +21,9 @@ const TabIcon = ({ focused, icon, title }: TabIconProps) => {
         <>
             <ImageBackground
                 source={images.highlight}
-                className="flex flex-row items-center justify-center flex-1 w-full min-w-[112px] min-h-16 mt-4 rounded-full overflow-hidden"
+                className="flex flex-row items-center justify-center flex-1 w-full min-w-[90px] min-h-16 mt-4 rounded-full overflow-hidden"
             >
-                <Image source={icon} tintColor="#151312" className="size-5" />
-                <Text className="text-secondary text-base font-semibold ml-2">{title}</Text>
+                <Image source={icon} tintColor="#fff" className="size-7" resizeMode="contain" />
             </ImageBackground>
         </>
     );
@@ -37,8 +35,6 @@ const TabsLayout = () => {
             screenOptions={{
                 tabBarShowLabel: false,
                 tabBarItemStyle: {
-                    width: "100%",
-                    height: "100%",
                     justifyContent: "center",
                     alignItems: "center",
                 },
@@ -46,12 +42,12 @@ const TabsLayout = () => {
                     height: 52,
                     borderRadius: 50,
                     borderTopWidth: 0,
-                    backgroundColor: "#0f0d23",
+                    backgroundColor: "#914025",
                     position: "absolute",
                     marginHorizontal: 20,
                     marginBottom: 36,
+                    paddingHorizontal: 12,
                     overflow: "hidden",
-                    borderColor: "#0f0d23",
                 },
             }}
         >
@@ -61,31 +57,39 @@ const TabsLayout = () => {
                     headerShown: false,
                     title: "Home",
 
-                    tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon={icons.home} title="Home" />,
+                    tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon={icons.home} />,
                 }}
             />
             <Tabs.Screen
-                name="search"
+                name="food"
                 options={{
                     headerShown: false,
-                    title: "Search",
-                    tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon={icons.search} title="Search" />,
+                    title: "Food",
+                    tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon={icons.food} />,
                 }}
             />
             <Tabs.Screen
-                name="profile"
+                name="favourite"
                 options={{
                     headerShown: false,
-                    title: "Profile",
-                    tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon={icons.person} title="Profile" />,
+                    title: "Favourites",
+                    tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon={icons.favourite} />,
                 }}
             />
             <Tabs.Screen
-                name="saved"
+                name="orders"
                 options={{
                     headerShown: false,
-                    title: "Saved",
-                    tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon={icons.save} title="Saved" />,
+                    title: "Orders",
+                    tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon={icons.orders} />,
+                }}
+            />
+            <Tabs.Screen
+                name="contact"
+                options={{
+                    headerShown: false,
+                    title: "Contact",
+                    tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon={icons.contact} />,
                 }}
             />
         </Tabs>
@@ -93,5 +97,3 @@ const TabsLayout = () => {
 };
 
 export default TabsLayout;
-
-// cái headerShown: false để ẩn cái header index mặc định của expo-router
