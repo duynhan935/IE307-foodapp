@@ -1,6 +1,7 @@
 import { categories, icons } from "@/constants/icons";
 import { banners, bestSeller, recommend } from "@/constants/images";
 import { Ionicons } from "@expo/vector-icons";
+import { Link } from "expo-router";
 import React from "react";
 import {
     Image,
@@ -65,7 +66,11 @@ export default function Index() {
                 <View className="flex-row items-center gap-3">
                     {/* Search box */}
                     <View className="flex-1 flex-row items-center bg-white rounded-full h-11 pl-3 pr-2">
-                        <Ionicons name="search-outline" size={20} color="#9AA0A6" />
+                        <Link href="/search" asChild>
+                            <TouchableOpacity activeOpacity={0.8}>
+                                <Ionicons name="search-outline" size={20} color="#9AA0A6" />
+                            </TouchableOpacity>
+                        </Link>
                         <TextInput
                             placeholder="Search"
                             placeholderTextColor="#9AA0A6"
@@ -156,15 +161,25 @@ export default function Index() {
                 <View className="px-5 mt-6">
                     <View className="flex-row items-center justify-between mb-3">
                         <Text className="text-lg font-semibold text-[#151312]">Best Seller</Text>
-                        <TouchableOpacity className="flex-row items-center">
-                            <Text className="text-[#F15A24] mr-1">View All</Text>
-                            <Ionicons name="chevron-forward" size={16} color="#F15A24" />
-                        </TouchableOpacity>
+                        <Link href="/bestseller" asChild>
+                            <TouchableOpacity className="flex-row items-center">
+                                <Text className="text-[#F15A24] mr-1">View All</Text>
+                                <Ionicons name="chevron-forward" size={16} color="#F15A24" />
+                            </TouchableOpacity>
+                        </Link>
                     </View>
                     <ScrollView horizontal showsHorizontalScrollIndicator={false} className="-mx-2">
                         {BEST_SELLERS.map((p) => (
                             <View key={p.id} className="mx-2 w-36">
-                                <Image source={p.image} className="h-28 w-full rounded-2xl" resizeMode="cover" />
+                                <Link href={{ pathname: "/food/[id]", params: { id: p.id } }} asChild>
+                                    <TouchableOpacity activeOpacity={0.8}>
+                                        <Image
+                                            source={p.image}
+                                            className="h-28 w-full rounded-2xl"
+                                            resizeMode="cover"
+                                        />
+                                    </TouchableOpacity>
+                                </Link>
                                 <View className="absolute right-3 top-3 bg-[#F15A24] rounded-full px-2 py-1">
                                     <Text className="text-white text-xs">${p.price.toFixed(2)}</Text>
                                 </View>
@@ -231,11 +246,27 @@ export default function Index() {
 
                 {/* Recommend grid */}
                 <View className="px-5 mt-6 pb-4">
-                    <Text className="text-lg font-semibold text-[#151312] mb-3">Recommend</Text>
+                    <View className="flex-row items-center justify-between mb-3">
+                        <Text className="text-lg font-semibold text-[#151312]">Recommend</Text>
+                        <Link href="/recommend" asChild>
+                            <TouchableOpacity className="flex-row items-center">
+                                <Text className="text-[#F15A24] mr-1">View All</Text>
+                                <Ionicons name="chevron-forward" size={16} color="#F15A24" />
+                            </TouchableOpacity>
+                        </Link>
+                    </View>
                     <View className="flex-row flex-wrap -mx-2">
                         {RECOMMEND.map((p) => (
                             <View key={p.id} className="w-1/2 px-2 mb-4">
-                                <Image source={p.image} className="rounded-2xl h-32 w-full" resizeMode="cover" />
+                                <Link href={{ pathname: "/food/[id]", params: { id: p.id } }} asChild>
+                                    <TouchableOpacity activeOpacity={0.8}>
+                                        <Image
+                                            source={p.image}
+                                            className="rounded-2xl h-32 w-full"
+                                            resizeMode="cover"
+                                        />
+                                    </TouchableOpacity>
+                                </Link>
                                 <View className="absolute left-4 top-3 bg-white/95 rounded-full px-2 py-1 flex-row items-center">
                                     <Text className="text-[#151312] text-[11px] mr-1">{p.rating.toFixed(1)}</Text>
                                     <Ionicons name="star" size={12} color="#F6B100" />

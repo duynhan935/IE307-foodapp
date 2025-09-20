@@ -61,11 +61,11 @@ const TabsLayout = () => {
                 }}
             />
             <Tabs.Screen
-                name="food"
+                name="menu"
                 options={{
                     headerShown: false,
-                    title: "Food",
-                    tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon={icons.food} />,
+                    title: "Menu",
+                    tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon={icons.menu} />,
                 }}
             />
             <Tabs.Screen

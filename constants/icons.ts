@@ -1,7 +1,6 @@
 import arrow from "@/assets/icons/arrow.png";
 import contact from "@/assets/icons/contact.png";
 import favourite from "@/assets/icons/favourite.png";
-import food from "@/assets/icons/food.png";
 import home from "@/assets/icons/home.png";
 import cart from "@/assets/icons/home/Cart.png";
 import desserts from "@/assets/icons/home/Desserts.png";
@@ -12,6 +11,7 @@ import snack from "@/assets/icons/home/Snacks.png";
 import user from "@/assets/icons/home/User.png";
 import vegan from "@/assets/icons/home/Vegan.png";
 import logo from "@/assets/icons/logo.png";
+import menu from "@/assets/icons/menu.png";
 import orders from "@/assets/icons/orders.png";
 import person from "@/assets/icons/person.png";
 import play from "@/assets/icons/play.png";
@@ -29,7 +29,7 @@ export const icons = {
     star,
     play,
     arrow,
-    food,
+    menu,
     favourite,
     orders,
     cart,
