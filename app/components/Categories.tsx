@@ -1,18 +1,21 @@
+import { categories } from "@/constants/icons";
 import React from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
-interface Categories {
-    key: string;
-    label: string;
-    icon: any;
-}
+const CATEGORIES = [
+    { key: "snacks", label: "Snacks", icon: categories.snack },
+    { key: "meal", label: "Meal", icon: categories.meals },
+    { key: "vegan", label: "Vegan", icon: categories.vegan },
+    { key: "dessert", label: "Dessert", icon: categories.desserts },
+    { key: "drinks", label: "Drinks", icon: categories.drinks },
+];
 
-const Categories = ({ data }: { data: Categories[] }) => {
+const Categories = () => {
     const [activeCategory, setActiveCategory] = React.useState("");
     return (
         <View className="px-5 pt-4">
             <ScrollView horizontal showsHorizontalScrollIndicator={false} className="-mx-1">
-                {data.map((c) => {
+                {CATEGORIES.map((c) => {
                     const active = c.key === activeCategory;
                     return (
                         <TouchableOpacity
@@ -38,9 +41,10 @@ const Categories = ({ data }: { data: Categories[] }) => {
                                     <Image source={c.icon} className="w-8 h-8" resizeMode="contain" />
                                 )}
                             </View>
-                            <Text className={`mt-1 ${active ? "text-[#F15A24] font-semibold" : "text-[#7A6432]"}`}>
+                            <Text className={`mt-1 ${active ? "text-[#391713] font-semibold" : "text-[#391713]"}`}>
                                 {c.label}
                             </Text>
+                            s
                         </TouchableOpacity>
                     );
                 })}

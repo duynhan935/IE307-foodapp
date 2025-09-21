@@ -1,19 +1,10 @@
-import { categories, icons } from "@/constants/icons";
 import { banners, bestSeller, recommend } from "@/constants/images";
 import { Ionicons } from "@expo/vector-icons";
 import { Link, useRouter } from "expo-router";
 import React from "react";
 import { Image, ImageBackground, ScrollView, Text, TouchableOpacity, View, useWindowDimensions } from "react-native";
-import SearchBar from "../components/SearchBar";
 import Categories from "../components/Categories";
-
-const CATEGORIES = [
-    { key: "snacks", label: "Snacks", icon: categories.snack },
-    { key: "meal", label: "Meal", icon: categories.meals },
-    { key: "vegan", label: "Vegan", icon: categories.vegan },
-    { key: "dessert", label: "Dessert", icon: categories.desserts },
-    { key: "drinks", label: "Drinks", icon: categories.drinks },
-];
+import SearchBar from "../components/SearchBar";
 
 const BEST_SELLERS = [
     { id: "1", title: "Burger Deluxe", price: 10.3, image: bestSeller.BS1 },
@@ -44,20 +35,15 @@ const RECOMMEND = [
 ];
 
 export default function Index() {
-    
     const [activeBanner, setActiveBanner] = React.useState(0);
     const { width } = useWindowDimensions();
     const bannerWidth = width - 40;
-    const RIGHT_ACTIONS = [
-        { key: "cart", icon: icons.orders },
-        { key: "bell", icon: icons.favourite },
-        { key: "user", icon: icons.person },
-    ];
+
     const router = useRouter();
     return (
         <View className="flex-1 bg-white">
             <View className="bg-[#F9CF63] px-5 pt-20 pb-4">
-                <SearchBar data={RIGHT_ACTIONS} />
+                <SearchBar />
 
                 {/* Greeting texts */}
                 <View className="mt-5">
@@ -71,7 +57,7 @@ export default function Index() {
             {/* Content */}
             <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 28 }}>
                 {/* Categories */}
-                <Categories data={CATEGORIES} />
+                <Categories />
 
                 {/* Best Seller */}
                 <View className="px-5 mt-6">

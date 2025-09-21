@@ -5,6 +5,7 @@ export default function RootLayout() {
         <Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="food/[id]" options={{ headerShown: false }} />
+            <Stack.Screen name="search" options={{ headerShown: false }} />
         </Stack>
     );
 }
