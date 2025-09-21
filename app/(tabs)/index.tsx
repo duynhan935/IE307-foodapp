@@ -1,18 +1,11 @@
 import { categories, icons } from "@/constants/icons";
 import { banners, bestSeller, recommend } from "@/constants/images";
 import { Ionicons } from "@expo/vector-icons";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import React from "react";
-import {
-    Image,
-    ImageBackground,
-    ScrollView,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
-    useWindowDimensions,
-} from "react-native";
+import { Image, ImageBackground, ScrollView, Text, TouchableOpacity, View, useWindowDimensions } from "react-native";
+import SearchBar from "../components/SearchBar";
+import Categories from "../components/Categories";
 
 const CATEGORIES = [
     { key: "snacks", label: "Snacks", icon: categories.snack },
@@ -51,7 +44,7 @@ const RECOMMEND = [
 ];
 
 export default function Index() {
-    const [activeCategory, setActiveCategory] = React.useState("");
+    
     const [activeBanner, setActiveBanner] = React.useState(0);
     const { width } = useWindowDimensions();
     const bannerWidth = width - 40;
@@ -60,52 +53,12 @@ export default function Index() {
         { key: "bell", icon: icons.favourite },
         { key: "user", icon: icons.person },
     ];
+    const router = useRouter();
     return (
         <View className="flex-1 bg-white">
             <View className="bg-[#F9CF63] px-5 pt-20 pb-4">
-                <View className="flex-row items-center gap-3">
-                    {/* Search box */}
-                    <View className="flex-1 flex-row items-center bg-white rounded-full h-11 pl-3 pr-2">
-                        <Link href="/search" asChild>
-                            <TouchableOpacity activeOpacity={0.8}>
-                                <Ionicons name="search-outline" size={20} color="#9AA0A6" />
-                            </TouchableOpacity>
-                        </Link>
-                        <TextInput
-                            placeholder="Search"
-                            placeholderTextColor="#9AA0A6"
-                            className="flex-1 ml-2 text-base text-black"
-                            returnKeyType="search"
-                        />
-                        <TouchableOpacity
-                            activeOpacity={0.8}
-                            className="w-9 h-9 rounded-full bg-[#F15A24] items-center justify-center"
-                        >
-                            <Ionicons name="options-outline" size={18} color="#FFFFFF" />
-                        </TouchableOpacity>
-                    </View>
+                <SearchBar data={RIGHT_ACTIONS} />
 
-                    {/* Right actions (use design icons) */}
-                    {RIGHT_ACTIONS.map((a) => (
-                        <TouchableOpacity
-                            key={a.key}
-                            activeOpacity={0.7}
-                            className="w-10 h-10 rounded-xl bg-white items-center justify-center"
-                        >
-                            <Ionicons
-                                name={
-                                    a.key === "cart"
-                                        ? "cart-outline"
-                                        : a.key === "bell"
-                                        ? "notifications-outline"
-                                        : "person-outline"
-                                }
-                                size={20}
-                                color="#F15A24"
-                            />
-                        </TouchableOpacity>
-                    ))}
-                </View>
                 {/* Greeting texts */}
                 <View className="mt-5">
                     <Text className="text-white text-3xl font-extrabold">Good Morning</Text>
@@ -118,44 +71,7 @@ export default function Index() {
             {/* Content */}
             <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 28 }}>
                 {/* Categories */}
-                <View className="px-5 pt-4">
-                    <ScrollView horizontal showsHorizontalScrollIndicator={false} className="-mx-1">
-                        {CATEGORIES.map((c) => {
-                            const active = c.key === activeCategory;
-                            return (
-                                <TouchableOpacity
-                                    key={c.key}
-                                    onPress={() => setActiveCategory(c.key)}
-                                    activeOpacity={0.9}
-                                    className={`mx-1 items-center`}
-                                >
-                                    <View
-                                        className={`w-16 h-16 rounded-2xl border ${
-                                            active ? "bg-[#F9E6A8] border-[#F15A24]" : "bg-white border-[#F2DFA2]"
-                                        } items-center justify-center`}
-                                        style={{
-                                            shadowColor: "#000",
-                                            shadowOpacity: 0.08,
-                                            shadowRadius: 6,
-                                            elevation: 2,
-                                        }}
-                                    >
-                                        {typeof c.icon === "string" ? (
-                                            <Image source={{ uri: c.icon }} className="w-8 h-8" resizeMode="contain" />
-                                        ) : (
-                                            <Image source={c.icon} className="w-8 h-8" resizeMode="contain" />
-                                        )}
-                                    </View>
-                                    <Text
-                                        className={`mt-1 ${active ? "text-[#F15A24] font-semibold" : "text-[#7A6432]"}`}
-                                    >
-                                        {c.label}
-                                    </Text>
-                                </TouchableOpacity>
-                            );
-                        })}
-                    </ScrollView>
-                </View>
+                <Categories data={CATEGORIES} />
 
                 {/* Best Seller */}
                 <View className="px-5 mt-6">
