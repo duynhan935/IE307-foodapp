@@ -1,5 +1,6 @@
 import { bestSeller } from "@/constants/images";
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import React from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Categories from "../components/Categories";
@@ -39,7 +40,13 @@ export default function SearchScreen() {
     return (
         <View className="flex-1 bg-white">
             {/* Header + Search + Categories */}
-            <View className="bg-[#F9CF63] px-5 pt-20 pb-4">
+            <View className="bg-[#F9CF63] px-5 pt-10 pb-4">
+                <View className="flex-row items-center pb-3">
+                    <TouchableOpacity onPress={() => router.back()} className="mr-3" activeOpacity={0.7}>
+                        <Ionicons name="arrow-back" size={24} color="#914025" />
+                    </TouchableOpacity>
+                    <Text className="text-xl font-bold text-[#914025]">Search</Text>
+                </View>
                 <SearchBar />
                 <View
                     className="bg-[#F15A24] rounded-t-3xl pb-10 pt-3 mt-5 -mx-5"
@@ -57,11 +64,11 @@ export default function SearchScreen() {
 
             {/* Phần màu trắng bo góc trên, đè lên phần cam */}
             <View
-                className="flex-1 px-5"
+                className="flex-1 pl-5 pr-10"
                 style={{
                     backgroundColor: "#fff",
                     borderTopRightRadius: 32,
-                    marginTop: -40, 
+                    marginTop: -40,
                     paddingTop: 24,
                 }}
             >

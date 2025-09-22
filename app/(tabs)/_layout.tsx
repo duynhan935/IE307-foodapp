@@ -93,8 +93,8 @@ const TabsLayout = () => {
                     tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon={icons.contact} />,
                 }}
             />
-            {/* Ẩn screen search khỏi tabbar, không chiếm chỗ */}
             <Tabs.Screen name="search" options={{ href: null }} />
+            <Tabs.Screen name="filter" options={{ href: null, tabBarStyle: { display: "none" } }} />
         </Tabs>
     );
 };
