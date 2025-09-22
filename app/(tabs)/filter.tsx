@@ -140,7 +140,7 @@ const Filter = () => {
 
                     {/* Apply button */}
                     <TouchableOpacity
-                        className="bg-[#F15A24] rounded-full items-center mt-8 mb-2 self-center px-10"
+                        className="bg-[#F15A24] rounded-full items-center mt-16 mb-2 self-center px-20  py-3"
                         activeOpacity={0.8}
                         onPress={() => {
                             router.push("/search");
