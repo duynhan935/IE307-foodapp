@@ -93,7 +93,7 @@ const TabsLayout = () => {
                     tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon={icons.contact} />,
                 }}
             />
-            <Tabs.Screen name="search" options={{ href: null }} />
+            <Tabs.Screen name="search" options={{ href: null, tabBarStyle: { display: "none" } }} />
             <Tabs.Screen name="filter" options={{ href: null, tabBarStyle: { display: "none" } }} />
         </Tabs>
     );
