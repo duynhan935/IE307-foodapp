@@ -1,14 +1,16 @@
+import { icons } from "@/constants/icons";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import React from "react";
 import { TextInput, TouchableOpacity, View } from "react-native";
 
-interface RightAction {
-    key: string;
-    icon: string;
-}
+const RIGHT_ACTIONS = [
+    { key: "cart", icon: icons.orders },
+    { key: "bell", icon: icons.favourite },
+    { key: "user", icon: icons.person },
+];
 
-const SearchBar = ({ data }: { data: RightAction[] }) => {
+const SearchBar = () => {
     return (
         <View className="flex-row items-center gap-3">
             {/* Search box */}
@@ -25,13 +27,14 @@ const SearchBar = ({ data }: { data: RightAction[] }) => {
                 <TouchableOpacity
                     activeOpacity={0.8}
                     className="w-9 h-9 rounded-full bg-[#F15A24] items-center justify-center"
+                    onPress={() => router.push("/filter")}
                 >
                     <Ionicons name="options-outline" size={18} color="#FFFFFF" />
                 </TouchableOpacity>
             </View>
 
             {/* Right actions */}
-            {data.map((a) => (
+            {RIGHT_ACTIONS.map((a) => (
                 <TouchableOpacity
                     key={a.key}
                     activeOpacity={0.7}

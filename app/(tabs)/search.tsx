@@ -1,5 +1,6 @@
 import { bestSeller } from "@/constants/images";
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import React from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Categories from "../components/Categories";
@@ -32,14 +33,20 @@ const RESULTS = [
     },
 ];
 
-export default function MenuScreen() {
+export default function SearchScreen() {
     const [query] = React.useState("ABC");
     const [sortBy, setSortBy] = React.useState<"popular" | "price" | "rating">("popular");
 
     return (
         <View className="flex-1 bg-white">
             {/* Header + Search + Categories */}
-            <View className="bg-[#F9CF63] px-5 pt-14 pb-4">
+            <View className="bg-[#F9CF63] px-5 pt-10 pb-4">
+                <View className="flex-row items-center pb-3">
+                    <TouchableOpacity onPress={() => router.back()} className="mr-3" activeOpacity={0.7}>
+                        <Ionicons name="arrow-back" size={24} color="#914025" />
+                    </TouchableOpacity>
+                    <Text className="text-xl font-bold text-[#914025]">Search</Text>
+                </View>
                 <SearchBar />
                 <View
                     className="bg-[#F15A24] rounded-t-3xl pb-10 pt-3 mt-5 -mx-5"
@@ -68,6 +75,9 @@ export default function MenuScreen() {
                 <ScrollView contentContainerStyle={{ paddingBottom: 28 }}>
                     {/* Dòng Search Result For / Sort By */}
                     <View className="flex-row items-center justify-between px-1">
+                        <Text className="text-[#6B7280]">
+                            Search Result For: <Text className="text-[#E95322] font-semibold">{query}</Text>
+                        </Text>
                         <TouchableOpacity
                             activeOpacity={0.7}
                             className="flex-row items-center"
@@ -75,12 +85,12 @@ export default function MenuScreen() {
                                 setSortBy(sortBy === "popular" ? "price" : sortBy === "price" ? "rating" : "popular")
                             }
                         >
-                            <View className="flex-row items-center">
-                                <Text className="text-[#070707] font-semibold">Sort By</Text>
-                                <Text className="text-[#E95322] font-normal ml-3">
+                            <Text className="text-[#070707] font-semibold mr-1">
+                                Sort By{" "}
+                                <Text className="text-[#E95322]">
                                     {sortBy === "popular" ? "Popular" : sortBy === "price" ? "Price" : "Rating"}
                                 </Text>
-                            </View>
+                            </Text>
                             <Ionicons name="chevron-down" size={16} color="#F15A24" />
                         </TouchableOpacity>
                     </View>
