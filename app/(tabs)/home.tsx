@@ -1,6 +1,6 @@
 import { banners, bestSeller, recommend } from "@/constants/images";
 import { Ionicons } from "@expo/vector-icons";
-import { Link, useRouter } from "expo-router";
+import { Link} from "expo-router";
 import React from "react";
 import { Image, ImageBackground, ScrollView, Text, TouchableOpacity, View, useWindowDimensions } from "react-native";
 import Categories from "../components/Categories";
@@ -39,7 +39,6 @@ export default function Index() {
     const { width } = useWindowDimensions();
     const bannerWidth = width - 40;
 
-    const router = useRouter();
     return (
         <View className="flex-1 bg-white">
             <View className="bg-[#F9CF63] px-5 pt-20 pb-4">

@@ -2,8 +2,8 @@ import { bestSeller } from "@/constants/images";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import Categories from "./components/Categories";
-import SearchBar from "./components/SearchBar";
+import Categories from "../components/Categories";
+import SearchBar from "../components/SearchBar";
 
 const RESULTS = [
     {
@@ -61,7 +61,7 @@ export default function SearchScreen() {
                 style={{
                     backgroundColor: "#fff",
                     borderTopRightRadius: 32,
-                    marginTop: -40, // Đè sát lên phần cam
+                    marginTop: -40, 
                     paddingTop: 24,
                 }}
             >

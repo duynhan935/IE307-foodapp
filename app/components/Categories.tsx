@@ -44,7 +44,6 @@ const Categories = () => {
                             <Text className={`mt-1 ${active ? "text-[#391713] font-semibold" : "text-[#391713]"}`}>
                                 {c.label}
                             </Text>
-                            s
                         </TouchableOpacity>
                     );
                 })}

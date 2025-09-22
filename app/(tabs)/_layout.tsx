@@ -33,6 +33,7 @@ const TabsLayout = () => {
     return (
         <Tabs
             screenOptions={{
+                headerShown: false,
                 tabBarShowLabel: false,
                 tabBarItemStyle: {
                     justifyContent: "center",
@@ -52,7 +53,7 @@ const TabsLayout = () => {
             }}
         >
             <Tabs.Screen
-                name="index"
+                name="home"
                 options={{
                     headerShown: false,
                     title: "Home",
@@ -92,6 +93,8 @@ const TabsLayout = () => {
                     tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon={icons.contact} />,
                 }}
             />
+            {/* Ẩn screen search khỏi tabbar, không chiếm chỗ */}
+            <Tabs.Screen name="search" options={{ href: null }} />
         </Tabs>
     );
 };
